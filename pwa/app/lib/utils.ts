@@ -27,10 +27,10 @@ export function slugify(str: string): string {
     .replace(/-+$/, '');
 }
 
-export async function parseParamsForYearElseDefault(
-  params: Params,
+export async function getYearOrElseDefault(
+  year?: any ,
 ): Promise<number | undefined> {
-  if (params.year === undefined) {
+  if (year === undefined) {
     // TODO: Cache this call
     const status = await getStatus({});
     return status.status === 200
@@ -38,12 +38,12 @@ export async function parseParamsForYearElseDefault(
       : new Date().getFullYear();
   }
 
-  const year = Number(params.year);
-  if (Number.isNaN(year) || year <= 0) {
+  const parsedYear = Number(year);
+  if (Number.isNaN(parsedYear) || parsedYear <= 0) {
     return undefined;
   }
 
-  return year;
+  return parsedYear;
 }
 
 export function timestampsAreOnDifferentDays(

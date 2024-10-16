@@ -82,7 +82,7 @@ import {
 } from '~/lib/teamUtils';
 import {
   addRecords,
-  parseParamsForYearElseDefault,
+  getYearOrElseDefault,
   pluralize,
   stringifyRecord,
   winrateFromRecord,
@@ -94,7 +94,7 @@ async function loadData(params: Params) {
   }
 
   const teamKey = `frc${params.teamNumber}`;
-  const year = await parseParamsForYearElseDefault(params);
+  const year = await getYearOrElseDefault(params?.year);
   if (year === undefined) {
     throw new Response(null, { status: 404 });
   }

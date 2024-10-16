@@ -27,13 +27,17 @@ import { CMP_EVENT_TYPES, EventType } from '~/lib/api/EventType';
 import { getEventWeekString, sortEventsComparator } from '~/lib/eventUtils';
 import {
   VALID_YEARS,
-  parseParamsForYearElseDefault,
+  getYearOrElseDefault,
   pluralize,
   slugify,
 } from '~/lib/utils';
 
 async function loadData(params: Params) {
-  const year = await parseParamsForYearElseDefault(params);
+  const regionYear = params.regionYear;
+  const filter = regionYear && params.year || false; 
+  
+  const year = await getYearOrElseDefault(regionYear ?? params.year);
+  
   if (year === undefined) {
     throw new Response(null, {
       status: 404,

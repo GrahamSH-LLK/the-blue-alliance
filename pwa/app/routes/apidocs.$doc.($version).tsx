@@ -75,7 +75,9 @@ export default function ApiDocsV3(): React.JSX.Element {
 
   return (
     <>
-      <div ref={ref}>
+      <div ref={ref} style={{
+        "--scalar-custom-header-height": "56px"
+      } as React.CSSProperties}>
         <ApiReferenceReact
           configuration={{
             hideDarkModeToggle: true,

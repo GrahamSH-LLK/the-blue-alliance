@@ -103,6 +103,12 @@ function ApiDocsV3(): React.JSX.Element {
         }}
       />
       <link rel="stylesheet" href={scalarCSS} />
+      <style>
+        :root {
+          --scalar-custom-header-height: calc(var(--spacing) * 14);
+          /* this sets the vertical offset to the height of our header so that their header doesn't overlap with our header */
+        }
+      </style>
     </>
   );
 }
